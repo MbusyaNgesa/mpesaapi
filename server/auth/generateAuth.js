@@ -18,3 +18,5 @@ const authHeader = `Basic ${base64Credentials}`;
 console.log("Combined Credentials:", combinedCredentials);
 console.log("Base64 Encoded:", base64Credentials);
 console.log("Full Authorization Header:", authHeader);
+
+//HOw
