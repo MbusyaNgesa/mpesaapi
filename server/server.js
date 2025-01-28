@@ -1,23 +1,17 @@
-import unirest from "unirest";
+import express from "express";
+import tokenRouter from "./routes/tokenRoute.js";
+import dotenv from "dotenv";
 
-const getAccessToken = async () => {
-  try {
-    const response = await unirest
-      .get(
-        "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
-      )
-      .headers({
-        Authorization:
-          "Basic UVBTQW80SFhDMW1XRWR1V0ZnMFhaREQxUWhmRVBwejdiYkVrZTZ6ZUFsbXN1aWF3OjBHTnFnSTJDNVdKbnBNaFlOMmZrRjNKdWphSlEydVRlUUFIR3VIaWNibXB0REs3bHVad1NhcUFHM3JKZ08yVzg=",
-      });
-    // The response will contain your access token
-    console.log("Access Token Response:", response.body);
-    return response.body;
-  } catch (error) {
-    console.error("Error getting access token:", error.message);
-    throw error;
-  }
-};
+dotenv.config();
 
-// Execute the function
-getAccessToken();
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Mpesa API");
+});
+
+app.listen(3002, () => {
+  console.log("Server is running");
+});
+
+app.use("/token", tokenRouter);
