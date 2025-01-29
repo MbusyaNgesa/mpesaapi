@@ -1,8 +1,8 @@
 import express from "express";
-import { createToken } from "../controllers/getToken.js";
+import { createToken, stkPush } from "../controllers/getToken.js";
 
 const router = express.Router();
 
-router.get("/", createToken);
+router.post("/stkpush", createToken, stkPush);
 
 export default router;
